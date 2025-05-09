@@ -71,7 +71,19 @@ Then ('I verify that there are no matching cards', async() =>{
     await AppsPage.verifythereisZeroCard();
 })
 
-Then ('I select {"string"} filter from left menu', async(string) =>{
 
-    await AppsPage.();
-})
+Then('I select {string} filter from left menu', async (FilterName) => {
+    await AppsPage.checktheFilter(FilterName);
+});
+
+Then('I should see atleast one card with {string} mini text', async (string) => {
+    await AppsPage.checkForMiniTextBoxes(string);
+});
+
+Then('I unselect {string} and {string} filters', async (text1, text2) => {
+    await AppsPage.unselectFilters(text1, text2);
+});
+
+Then('I see the total number of cards after filters are removed', async () => {
+    await AppsPage.verifyCardCount();
+});

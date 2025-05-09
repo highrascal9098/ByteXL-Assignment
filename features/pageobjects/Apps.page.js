@@ -33,7 +33,7 @@ class AppsPage{
         await browser.pause(1000);
         const elements = await $$('div.rounded-lg.bg-card.text-card-foreground.shadow-sm.flex.flex-col.overflow-hidden.border-2.border-gray-500.hover\\:shadow-lg.transition-all.duration-300.ease-out.h-full');
 
-    // Return the number of elements found
+    
     console.log(elements.length);
     return elements.length;
     }
@@ -42,7 +42,7 @@ class AppsPage{
         await browser.pause(1000);
         const elementswhenFilterisSelected = await $$('div.rounded-lg.bg-card.text-card-foreground.shadow-sm.flex.flex-col.overflow-hidden.border-2.border-gray-500.hover\\:shadow-lg.transition-all.duration-300.ease-out.h-full');
 
-    // Return the number of elements found
+    
     console.log(elementswhenFilterisSelected.length);
     return elementswhenFilterisSelected.length;
     }
@@ -91,7 +91,44 @@ class AppsPage{
         }
         else ('something is fishy')
     }
+
+
+    async checktheFilter(FilterName) {
+        const filterButton = await browser.$(`//div[@class='flex items-center space-x-2']//button[@id='${FilterName}']`);
+        await filterButton.click();
     }
+ 
+    async checkForMiniTextBoxes(string) {
+        const filteredCount = await $$(`//div[@class='mt-2 flex flex-wrap gap-1']//div[text()='${string}']`);
+        console.log('Number of elements:', filteredCount.length);
+        if (filteredCount.length > 0) {
+            console.log('Filter applied successfully');
+        } else {
+            console.log('Something went wrong! No matching cards found.');
+        }
+    }
+
+    async unselectFilters(text1, text2) {
+        const firstFilter = await browser.$(`//div[@class='flex items-center space-x-2']//button[@id='${text1}']`);
+        const isFirstSelected = await firstFilter.isSelected();
+        if (isFirstSelected) {
+            await firstFilter.click();
+        }
+
+        const secondFilter = await browser.$(`//div[@class='flex items-center space-x-2']//button[@id='${text2}']`);
+        const isSecondSelected = await secondFilter.isSelected();
+        if (isSecondSelected) {
+            await secondFilter.click();
+        }
+    }
+
+
+    async verifyCardCount() {
+        const allCards = await $$('div.card-class');  
+        console.log('Total number of cards:', allCards.length);
+    }
+}
+
 
 
 
