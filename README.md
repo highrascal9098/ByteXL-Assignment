@@ -7,6 +7,7 @@ To run this Automation script, please follow the bellow steps!
    After cloning
 2) cd ./ByteXL-Assignment
 3) type code ., to open vs code
+4) git checkout master
 
   Next, open terminal in vscode, and enter these commands
 4) npm i
