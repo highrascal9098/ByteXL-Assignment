@@ -1,7 +1,7 @@
 To run this Automation script, please follow the bellow steps!
 
 
-->Run these commands in termil in a folder
+->Run these commands in terminal, in the folder
 
 1) git clone https://github.com/highrascal9098/ByteXL-Assignment/tree/master
    After cloning
